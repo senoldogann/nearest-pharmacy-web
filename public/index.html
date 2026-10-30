@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nearest Pharmacy</title>
+    <meta name="description" content="Find the pharmacy closest to you, using OpenStreetMap data." />
+    <meta name="theme-color" content="#0f6a4f" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="/app.js" type="module"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">+</span>
+        <div>
+          <h1>Nearest Pharmacy</h1>
+          <p>Pharmacies around you, from OpenStreetMap</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel" aria-labelledby="search-title">
+        <h2 id="search-title" class="visually-hidden">Search</h2>
+
+        <div class="search-box">
+          <button id="locate" class="primary" type="button">
+            <span aria-hidden="true">◎</span> Use my location
+          </button>
+          <div class="divider"><span>or</span></div>
+          <form id="search-form" role="search">
+            <label for="address" class="visually-hidden">Address or place</label>
+            <div class="search-row">
+              <input id="address" name="address" type="search" placeholder="Address, city or postal code"
+                     autocomplete="off" enterkeyhint="search" />
+              <button type="submit" class="secondary">Search</button>
+            </div>
+          </form>
+          <div id="matches" class="matches" hidden></div>
+
+          <label class="radius">
+            Within
+            <select id="radius">
+              <option value="500">500 m</option>
+              <option value="1000">1 km</option>
+              <option value="2000" selected>2 km</option>
+              <option value="5000">5 km</option>
+              <option value="10000">10 km</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+        <ol id="results" class="results"></ol>
+      </section>
+
+      <section class="map-wrap" aria-label="Map of nearby pharmacies">
+        <div id="map"></div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Pharmacy data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a> contributors</span>
+      <span>Distances are straight-line, not walking routes.</span>
+    </footer>
+  </body>
+</html>
